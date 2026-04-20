@@ -1,2 +1,60 @@
-# data-store-app
-A full-stack web application built with Spring Boot, MySQL, and JDBC on the backend, and React with TypeScript on the frontend. The application exposes a RESTful API for storing and managing user data, with a responsive interface that interacts with the API using Axios.
+# Data Store App
+
+## Overview
+
+This is a full-stack web application built with:
+
+* **Backend:** Spring Boot, MySQL, JDBC
+* **Frontend:** React, TypeScript
+
+The application allows users to store and manage data through a REST API and a simple user interface.
+
+---
+
+## Current Implementation
+
+The backend currently uses **JDBC (Java Database Connectivity)** to interact directly with the database.
+
+This means:
+
+* SQL queries are written manually
+* Data is handled at a low level
+* Full control over database operations
+
+This approach is used to **build a strong understanding of how data flows between the application and the database**.
+
+---
+
+## Future Improvement (Hibernate)
+
+In the future, this project will be upgraded to use **Hibernate (an ORM framework)**.
+
+Hibernate will:
+
+* Automatically convert Java objects into database records
+* Reduce the need to write SQL manually
+* Simplify database operations
+
+---
+
+## Why this change?
+
+The goal is to:
+
+1. First understand how databases work using JDBC
+2. Then switch to Hibernate to learn a more modern and widely used approach
+
+This will make it easier to compare:
+
+* **JDBC → manual, low-level control**
+* **Hibernate → automated, higher-level abstraction**
+
+---
+
+## Goal
+
+By completing both versions, this project demonstrates:
+
+* Strong backend fundamentals
+* Understanding of database interactions
+* Ability to use both low-level and high-level data access approaches
