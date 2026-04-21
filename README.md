@@ -65,7 +65,13 @@ By completing both versions, this project demonstrates:
 
 ## Phase 1 (done)
 
-Spring Boot backend scaffold with MySQL JDBC connectivity. Configure `backend/src/main/resources/application.properties` with your MySQL username and password, create the database `data_store_db`, then run:
+Spring Boot backend scaffold with MySQL JDBC connectivity. Create the database `data_store_db`, then provide your MySQL password (never commit it):
+
+**Option A — local file (recommended):** copy `backend/application-local.properties.example` to `backend/application-local.properties` and set `spring.datasource.password` to your MySQL root password. That file is gitignored.
+
+**Option B — environment variable:** in PowerShell before running the app: `$env:SPRING_DATASOURCE_PASSWORD="yourpassword"`
+
+Then:
 
 ```bash
 cd backend

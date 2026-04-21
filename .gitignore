@@ -1,6 +1,9 @@
 # Maven
 backend/target/
 
+# Local secrets (copy from application-local.properties.example)
+backend/application-local.properties
+
 # IDE
 .idea/
 *.iml
