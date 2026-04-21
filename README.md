@@ -7,11 +7,13 @@ This is a full-stack web application built with:
 * **Backend:** Spring Boot, MySQL, JDBC
 * **Frontend:** React, TypeScript
 
-The application allows users to store and manage data through a REST API and a simple user interface.
+The application allows users to store and manage data through a REST API and a simple user interface. The application exposes a REST API for storing and managing user data, with a frontend interface that interacts with the API using Axios.
+
+This project focuses on understanding low-level database interactions using JDBC, with future plans to explore Hibernate as a higher-level ORM approach for comparison and deeper backend learning.
 
 ---
 
-## Current Implementation
+## Current implementation
 
 The backend currently uses **JDBC (Java Database Connectivity)** to interact directly with the database.
 
@@ -25,7 +27,7 @@ This approach is used to **build a strong understanding of how data flows betwee
 
 ---
 
-## Future Improvement (Hibernate)
+## Future improvement (Hibernate)
 
 In the future, this project will be upgraded to use **Hibernate (an ORM framework)**.
 
@@ -46,8 +48,8 @@ The goal is to:
 
 This will make it easier to compare:
 
-* **JDBC → manual, low-level control**
-* **Hibernate → automated, higher-level abstraction**
+* **JDBC:** manual, low-level control
+* **Hibernate:** automated, higher-level abstraction
 
 ---
 
@@ -58,3 +60,18 @@ By completing both versions, this project demonstrates:
 * Strong backend fundamentals
 * Understanding of database interactions
 * Ability to use both low-level and high-level data access approaches
+
+---
+
+## Phase 1 (done)
+
+Spring Boot backend scaffold with MySQL JDBC connectivity. Configure `backend/src/main/resources/application.properties` with your MySQL username and password, create the database `data_store_db`, then run:
+
+```bash
+cd backend
+.\mvnw.cmd spring-boot:run
+```
+
+On Linux or macOS, use `./mvnw` instead of `.\mvnw.cmd`. If you use a global Maven install, `mvn spring-boot:run` works the same way.
+
+On successful startup you should see a log line: `MySQL connection OK (database reachable).`
