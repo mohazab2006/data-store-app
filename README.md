@@ -81,3 +81,20 @@ cd backend
 On Linux or macOS, use `./mvnw` instead of `.\mvnw.cmd`. If you use a global Maven install, `mvn spring-boot:run` works the same way.
 
 On successful startup you should see a log line: `MySQL connection OK (database reachable).`
+
+---
+
+## Phase 2 (done)
+
+- **Java model:** `backend/src/main/java/com/example/datastore/model/User.java` (`id`, `name`, `email`, `age`).
+- **SQL:** `backend/src/main/resources/db/schema.sql` defines the `users` table for `data_store_db`.
+
+Apply the table once (Workbench or CLI), for example:
+
+```powershell
+mysql -u root -p data_store_db -e "SOURCE C:/Projects/data-store-app/backend/src/main/resources/db/schema.sql"
+```
+
+Or open `schema.sql` in MySQL Workbench while `data_store_db` is selected and execute it.
+
+Verify: `SHOW TABLES;` should list `users`.
