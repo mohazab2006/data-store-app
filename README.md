@@ -112,3 +112,24 @@ Verify: `SHOW TABLES;` should list `users`.
   - `deleteById(Long id)`
 
 Phase 3 focuses on direct JDBC data access; service and controller layers come next.
+
+---
+
+## Phase 4 (done)
+
+- Added service layer: `backend/src/main/java/com/example/datastore/service/UserService.java`
+  - business validation (`name`, `email`, `age`)
+  - user-not-found handling
+  - duplicate-email conflict mapping
+- Added REST controller: `backend/src/main/java/com/example/datastore/controller/UserController.java`
+  - `POST /api/users`
+  - `GET /api/users`
+  - `GET /api/users/{id}`
+  - `PUT /api/users/{id}`
+  - `DELETE /api/users/{id}`
+- Added global API error handling with proper status codes:
+  - `400 Bad Request`
+  - `404 Not Found`
+  - `409 Conflict`
+  - `500 Internal Server Error`
+- Enabled CORS for local frontend origins: `http://localhost:5173` and `http://localhost:3000`
