@@ -98,3 +98,17 @@ mysql -u root -p data_store_db -e "SOURCE C:/Projects/data-store-app/backend/src
 Or open `schema.sql` in MySQL Workbench while `data_store_db` is selected and execute it.
 
 Verify: `SHOW TABLES;` should list `users`.
+
+---
+
+## Phase 3 (done)
+
+- Added JDBC repository: `backend/src/main/java/com/example/datastore/repository/UserRepository.java`
+- Implemented SQL operations with prepared statements and row mapping:
+  - `create(User)`
+  - `findAll()`
+  - `findById(Long id)`
+  - `update(Long id, User user)`
+  - `deleteById(Long id)`
+
+Phase 3 focuses on direct JDBC data access; service and controller layers come next.
