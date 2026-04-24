@@ -133,3 +133,17 @@ Phase 3 focuses on direct JDBC data access; service and controller layers come n
   - `409 Conflict`
   - `500 Internal Server Error`
 - Enabled CORS for local frontend origins: `http://localhost:5173` and `http://localhost:3000`
+
+---
+
+## Phase 5 (done)
+
+- Added backend API testing artifacts:
+  - `backend/scripts/phase5-api-smoke-test.ps1` (automated CRUD smoke test)
+  - `backend/docs/phase5-backend-test-checklist.md` (manual checklist and curl examples)
+- Smoke test covers:
+  - create user
+  - fetch one/all users
+  - update user
+  - delete user
+  - verify deleted user returns `404`
