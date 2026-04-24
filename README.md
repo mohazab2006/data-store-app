@@ -145,5 +145,6 @@ Phase 3 focuses on direct JDBC data access; service and controller layers come n
   - create user
   - fetch one/all users
   - update user
-  - delete user
   - verify deleted user returns `404`
+
+Upcoming work (Phases 6–8 and beyond) is summarized in [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md).
