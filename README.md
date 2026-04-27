@@ -22,6 +22,20 @@ Spreadsheets scatter context across cells and tabs; threads bury updates in nois
 
 ---
 
+## Future implementation
+
+The backend today uses **JDBC** on purpose: hand-written SQL and explicit mapping make it obvious how HTTP requests become rows in MySQL. That’s the baseline.
+
+**Next evolution (planned):** introduce **Hibernate / Spring Data JPA** so the same product ideas are expressed through entities, repositories, and generated SQL—while keeping the **REST API contract** (and UX) stable. Goals:
+
+- Compare **ORM vs JDBC** side by side on one domain (`User` / `users`).
+- Reduce boilerplate where it makes sense; keep migrations and schema changes understandable.
+- Optionally fold in **Phase 8** polish (full-stack edge cases, CORS, demo-ready passes)—tracked in [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md).
+
+Out of scope for this learning repo unless you expand the spec: microservices split, auth/login layers (unless you deliberately add them).
+
+---
+
 ## Run it locally
 
 You need **Node.js**, **JDK** (Spring Boot–compatible), and **MySQL**.
@@ -41,7 +55,7 @@ Production UI: `cd frontend && npm run build`.
 
 **Shape:** Monorepo — `frontend/` (React, TypeScript, Vite, Tailwind) talks to `backend/` (Spring Boot REST) backed by MySQL via JDBC so the path from UI → API → rows stays explicit.
 
-**Roadmap / learning:** JDBC-first by design; optional Hibernate comparison later — see [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md). Smoke scripts and curl-style notes: `backend/scripts/`, `backend/docs/`.
+**Roadmap / learning:** JDBC baseline now; Hibernate/JPA path summarized above — details and Phase 8 tasks in [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md). Smoke scripts: `backend/scripts/`, `backend/docs/`.
 
 **HTTP API**
 
