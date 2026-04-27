@@ -46,8 +46,11 @@ export function UserForm({ disabled, onCreated }: Props) {
       onSubmit={handleSubmit}
       className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm shadow-slate-900/5"
     >
-      <h2 className="text-lg font-semibold tracking-tight text-[#1e3a8a]">Add someone</h2>
-      <p className="mt-1 text-sm text-slate-600">Emails must be unique. Ages must be positive.</p>
+      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-400">New entry</p>
+      <h2 className="mt-2 text-lg font-semibold tracking-tight text-[#1e3a8a]">Welcome someone new</h2>
+      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+        Each email stays unique—you will be gently nudged if a duplicate slips in.
+      </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
         <label className="block text-left text-sm font-medium text-slate-700">
@@ -103,7 +106,7 @@ export function UserForm({ disabled, onCreated }: Props) {
           disabled={disabled || submitting}
           className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[#1e40af] px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-[#1e40af]/20 transition hover:bg-[#1d4ed8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e40af] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {submitting ? 'Saving…' : 'Add user'}
+          {submitting ? 'Adding…' : 'Add to directory'}
         </button>
       </div>
     </form>

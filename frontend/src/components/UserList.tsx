@@ -13,9 +13,12 @@ export function UserList({ users, loading, editingId, onEdit, onDelete }: Props)
     <section className="rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm shadow-slate-900/5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="text-left">
-          <h2 className="text-lg font-semibold tracking-tight text-[#1e3a8a]">People</h2>
-          <p className="mt-1 text-sm text-slate-600">
-            {loading ? 'Refreshing…' : `${users.length} ${users.length === 1 ? 'person' : 'people'}`}
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-400">
+            Directory
+          </p>
+          <h2 className="mt-2 text-lg font-semibold tracking-tight text-[#1e3a8a]">Everyone in view</h2>
+          <p className="mt-2 text-sm text-slate-600">
+            {loading ? 'Gathering your list…' : `${users.length} ${users.length === 1 ? 'person' : 'people'} on file`}
           </p>
         </div>
       </div>
@@ -34,7 +37,7 @@ export function UserList({ users, loading, editingId, onEdit, onDelete }: Props)
                 Age
               </th>
               <th scope="col" className="px-4 py-3 text-right">
-                Actions
+                Manage
               </th>
             </tr>
           </thead>
@@ -42,7 +45,7 @@ export function UserList({ users, loading, editingId, onEdit, onDelete }: Props)
             {!loading && users.length === 0 ? (
               <tr>
                 <td colSpan={4} className="px-4 py-10 text-center text-sm text-slate-600">
-                  No one here yet — add your first user above.
+                  Your directory is ready—add the first person from the left when you are.
                 </td>
               </tr>
             ) : (

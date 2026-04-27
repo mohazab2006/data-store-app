@@ -47,9 +47,12 @@ export function EditUserForm({ user, disabled, onSaved, onCancel }: Props) {
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="text-left">
-          <h2 className="text-lg font-semibold tracking-tight text-[#1e3a8a]">Edit user</h2>
-          <p className="mt-1 text-sm text-slate-600">
-            Updating <span className="font-medium text-slate-800">#{user.id}</span>
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-amber-700/70">
+            Refine
+          </p>
+          <h2 className="mt-2 text-lg font-semibold tracking-tight text-[#1e3a8a]">Adjust their details</h2>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            Updating <span className="font-medium text-slate-800">{user.name}</span>
           </p>
         </div>
         <button
@@ -113,7 +116,7 @@ export function EditUserForm({ user, disabled, onSaved, onCancel }: Props) {
           disabled={disabled || submitting}
           className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[#f59e0b] px-5 py-2.5 text-sm font-semibold text-[#1e3a8a] shadow-sm shadow-amber-600/15 transition hover:bg-[#fbbf24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {submitting ? 'Saving…' : 'Save changes'}
+          {submitting ? 'Saving…' : 'Save updates'}
         </button>
       </div>
     </form>
