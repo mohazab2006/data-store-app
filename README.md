@@ -1,165 +1,58 @@
-# Data Store App
+# Directory
 
-## Overview
-
-This is a full-stack web application built with:
-
-* **Backend:** Spring Boot, MySQL, JDBC
-* **Frontend:** React, TypeScript
-
-The application allows users to store and manage data through a REST API and a simple user interface. The application exposes a REST API for storing and managing user data, with a frontend interface that interacts with the API using Axios.
-
-This project focuses on understanding low-level database interactions using JDBC, with future plans to explore Hibernate as a higher-level ORM approach for comparison and deeper backend learning.
+**Your people in one calm view.** Directory is a full-stack contacts workspace: add someone in a moment, skim the list without noise, and edit details only when you mean to—nothing saves until you confirm.
 
 ---
 
-## Current implementation
+## What you get
 
-The app is a **monorepo** with a `backend/` (Spring Boot) and `frontend/` (Vite + React + TypeScript) package. The UI calls the REST API with **Axios**.
-
-The backend currently uses **JDBC (Java Database Connectivity)** to interact directly with the database.
-
-This means:
-
-* SQL queries are written manually
-* Data is handled at a low level
-* Full control over database operations
-
-This approach is used to **build a strong understanding of how data flows between the application and the database**.
+- **Single surface** — Names, emails, and ages together so you’re not jumping between spreadsheets and threads.
+- **Quick capture** — One short form to welcome someone new.
+- **Edits with intent** — Open a row, adjust what changed, save—or cancel without touching stored data.
+- **Duplicate awareness** — If an email already exists, you hear about it before it clutters your list.
+- **Polished experience** — Dark, focused UI built for clarity under pressure—not a toy CRUD demo dressed as a product.
 
 ---
 
-## Future improvement (Hibernate)
+## Try it locally
 
-In the future, this project will be upgraded to use **Hibernate (an ORM framework)**.
+You’ll need **Node.js**, a **JDK** compatible with Spring Boot 3.x, and **MySQL**.
 
-Hibernate will:
+### 1. Create the database
 
-* Automatically convert Java objects into database records
-* Reduce the need to write SQL manually
-* Simplify database operations
+Create a database named `data_store_db`, then apply the schema:
 
----
+```powershell
+mysql -u root -p data_store_db -e "SOURCE C:/path/to/data-store-app/backend/src/main/resources/db/schema.sql"
+```
 
-## Why this change?
+(Adjust the path to your clone. In MySQL Workbench, select `data_store_db` and run `schema.sql`.)
 
-The goal is to:
+Verify with `SHOW TABLES;` — you should see `users`.
 
-1. First understand how databases work using JDBC
-2. Then switch to Hibernate to learn a more modern and widely used approach
+### 2. Configure the backend
 
-This will make it easier to compare:
+Never commit database passwords. Pick one approach:
 
-* **JDBC:** manual, low-level control
-* **Hibernate:** automated, higher-level abstraction
+**A — Local file (recommended)**  
+Copy `backend/application-local.properties.example` to `backend/application-local.properties` and set `spring.datasource.password`.
 
----
+**B — Environment variable**  
 
-## Goal
+```powershell
+$env:SPRING_DATASOURCE_PASSWORD="yourpassword"
+```
 
-By completing both versions, this project demonstrates:
-
-* Strong backend fundamentals
-* Understanding of database interactions
-* Ability to use both low-level and high-level data access approaches
-
----
-
-## Phase 1 (done)
-
-Spring Boot backend scaffold with MySQL JDBC connectivity. Create the database `data_store_db`, then provide your MySQL password (never commit it):
-
-**Option A — local file (recommended):** copy `backend/application-local.properties.example` to `backend/application-local.properties` and set `spring.datasource.password` to your MySQL root password. That file is gitignored.
-
-**Option B — environment variable:** in PowerShell before running the app: `$env:SPRING_DATASOURCE_PASSWORD="yourpassword"`
-
-Then:
+Start the API:
 
 ```bash
 cd backend
 .\mvnw.cmd spring-boot:run
 ```
 
-On Linux or macOS, use `./mvnw` instead of `.\mvnw.cmd`. If you use a global Maven install, `mvn spring-boot:run` works the same way.
+On macOS/Linux use `./mvnw`. You should see a log line like **MySQL connection OK (database reachable).**
 
-On successful startup you should see a log line: `MySQL connection OK (database reachable).`
-
----
-
-## Phase 2 (done)
-
-- **Java model:** `backend/src/main/java/com/example/datastore/model/User.java` (`id`, `name`, `email`, `age`).
-- **SQL:** `backend/src/main/resources/db/schema.sql` defines the `users` table for `data_store_db`.
-
-Apply the table once (Workbench or CLI), for example:
-
-```powershell
-mysql -u root -p data_store_db -e "SOURCE C:/Projects/data-store-app/backend/src/main/resources/db/schema.sql"
-```
-
-Or open `schema.sql` in MySQL Workbench while `data_store_db` is selected and execute it.
-
-Verify: `SHOW TABLES;` should list `users`.
-
----
-
-## Phase 3 (done)
-
-- Added JDBC repository: `backend/src/main/java/com/example/datastore/repository/UserRepository.java`
-- Implemented SQL operations with prepared statements and row mapping:
-  - `create(User)`
-  - `findAll()`
-  - `findById(Long id)`
-  - `update(Long id, User user)`
-  - `deleteById(Long id)`
-
-Phase 3 focuses on direct JDBC data access; service and controller layers come next.
-
----
-
-## Phase 4 (done)
-
-- Added service layer: `backend/src/main/java/com/example/datastore/service/UserService.java`
-  - business validation (`name`, `email`, `age`)
-  - user-not-found handling
-  - duplicate-email conflict mapping
-- Added REST controller: `backend/src/main/java/com/example/datastore/controller/UserController.java`
-  - `POST /api/users`
-  - `GET /api/users`
-  - `GET /api/users/{id}`
-  - `PUT /api/users/{id}`
-  - `DELETE /api/users/{id}`
-- Added global API error handling with proper status codes:
-  - `400 Bad Request`
-  - `404 Not Found`
-  - `409 Conflict`
-  - `500 Internal Server Error`
-- Enabled CORS for local frontend origins: `http://localhost:5173` and `http://localhost:3000`
-
----
-
-## Phase 5 (done)
-
-- Added backend API testing artifacts:
-  - `backend/scripts/phase5-api-smoke-test.ps1` (automated CRUD smoke test)
-  - `backend/docs/phase5-backend-test-checklist.md` (manual checklist and curl examples)
-- Smoke test covers:
-  - create user
-  - fetch one/all users
-  - update user
-  - verify deleted user returns `404`
-
-Remaining work (**Phase 8** and optional Hibernate v2) is summarized in [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md).
-
----
-
-## Phase 6 (done)
-
-- `frontend/` — Vite + React + TypeScript
-- Styling: **Tailwind CSS** (v4) with the Vite plugin, **Inter** (Google Fonts)
-- **Axios** client: `src/services/apiClient.ts`, `src/services/userService.ts`
-- API base URL: set `VITE_API_BASE_URL` (see `frontend/.env.example`); defaults to `http://localhost:8080`
-- Dev server: `http://localhost:5173` (matches backend CORS)
+### 3. Run the frontend
 
 ```bash
 cd frontend
@@ -167,19 +60,53 @@ npm install
 npm run dev
 ```
 
----
+Optional: copy `frontend/.env.example` to `frontend/.env` and set `VITE_API_BASE_URL` if your API isn’t at `http://localhost:8080`.
 
-## Phase 7 (done)
+Open **http://localhost:5173** — the UI talks to the API over HTTP (CORS allows local dev origins).
 
-- `src/types/User.ts` — user shape
-- `src/components/UserForm.tsx` — create user
-- `src/components/UserList.tsx` — list, edit, delete
-- `src/components/EditUserForm.tsx` — update selected user
-- `src/App.tsx` — landing hero + layout + status banner for API feedback
-
-Production build:
+### Production build (frontend)
 
 ```bash
 cd frontend
 npm run build
 ```
+
+---
+
+## How it fits together
+
+| Layer        | Role |
+| ------------ | ---- |
+| **Experience** | React + TypeScript (Vite), Tailwind, Axios — forms, table, and feedback tuned for scanning and trust. |
+| **Application** | Spring Boot REST API — validation, duplicate handling, predictable responses. |
+| **Data**        | MySQL — accessed with JDBC so the data path stays explicit and easy to reason about. |
+
+The repository is a **monorepo**: `backend/` for the API, `frontend/` for the client.
+
+---
+
+## Learning & roadmap
+
+This project is also a deliberate learning path: **JDBC first** (hand-written SQL and clear mapping) so the path from HTTP to rows is visible end to end. A future pass may introduce **Hibernate** for comparison with a higher-level ORM—see [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md) for what’s next and optional follow-ups.
+
+API smoke tests and checklists live under `backend/scripts/` and `backend/docs/` if you want automated or manual verification.
+
+---
+
+## API (concise)
+
+| Method | Path | Purpose |
+| ------ | ---- | ------- |
+| `POST` | `/api/users` | Create a person |
+| `GET` | `/api/users` | List everyone |
+| `GET` | `/api/users/{id}` | Fetch one |
+| `PUT` | `/api/users/{id}` | Update |
+| `DELETE` | `/api/users/{id}` | Remove |
+
+Typical outcomes: success payloads, `400` for bad input, `404` when missing, `409` when email conflicts.
+
+---
+
+## License
+
+Use and adapt for learning and portfolio use; add a license file if you ship this beyond personal demos.
