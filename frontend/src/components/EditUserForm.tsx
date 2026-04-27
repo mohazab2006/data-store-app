@@ -43,30 +43,30 @@ export function EditUserForm({ user, disabled, onSaved, onCancel }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-amber-200/90 bg-gradient-to-br from-white to-amber-50/40 p-6 shadow-sm shadow-amber-900/5"
+      className="rounded-2xl border border-blue-500/25 bg-gradient-to-br from-zinc-900/90 to-blue-950/35 p-6 shadow-sm shadow-black/25"
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="text-left">
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-amber-700/70">
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-blue-400/80">
             Refine
           </p>
-          <h2 className="mt-2 text-lg font-semibold tracking-tight text-[#1e3a8a]">Adjust their details</h2>
-          <p className="mt-2 text-sm leading-relaxed text-slate-600">
-            Updating <span className="font-medium text-slate-800">{user.name}</span>
+          <h2 className="mt-2 text-lg font-semibold tracking-tight text-blue-400">Adjust their details</h2>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+            Updating <span className="font-medium text-zinc-200">{user.name}</span>
           </p>
         </div>
         <button
           type="button"
           onClick={onCancel}
           disabled={submitting}
-          className="cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e40af] disabled:cursor-not-allowed disabled:opacity-60"
+          className="cursor-pointer rounded-xl border border-white/[0.1] bg-zinc-950/60 px-3 py-2 text-sm font-medium text-zinc-300 transition hover:border-white/15 hover:bg-white/[0.05] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
         >
           Cancel
         </button>
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
-        <label className="block text-left text-sm font-medium text-slate-700">
+        <label className="block text-left text-sm font-medium text-zinc-300">
           Name
           <input
             type="text"
@@ -75,12 +75,12 @@ export function EditUserForm({ user, disabled, onSaved, onCancel }: Props) {
             value={name}
             onChange={(ev) => setName(ev.target.value)}
             disabled={disabled || submitting}
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-[#3b82f6] focus:ring-4 focus:ring-[#3b82f6]/15 disabled:opacity-60"
+            className="mt-2 w-full rounded-xl border border-white/[0.08] bg-black/35 px-3 py-2.5 text-zinc-100 outline-none transition focus:border-blue-500/70 focus:ring-4 focus:ring-blue-500/15 disabled:opacity-60"
             required
           />
         </label>
 
-        <label className="block text-left text-sm font-medium text-slate-700">
+        <label className="block text-left text-sm font-medium text-zinc-300">
           Email
           <input
             type="email"
@@ -89,12 +89,12 @@ export function EditUserForm({ user, disabled, onSaved, onCancel }: Props) {
             value={email}
             onChange={(ev) => setEmail(ev.target.value)}
             disabled={disabled || submitting}
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-[#3b82f6] focus:ring-4 focus:ring-[#3b82f6]/15 disabled:opacity-60"
+            className="mt-2 w-full rounded-xl border border-white/[0.08] bg-black/35 px-3 py-2.5 text-zinc-100 outline-none transition focus:border-blue-500/70 focus:ring-4 focus:ring-blue-500/15 disabled:opacity-60"
             required
           />
         </label>
 
-        <label className="block text-left text-sm font-medium text-slate-700">
+        <label className="block text-left text-sm font-medium text-zinc-300">
           Age
           <input
             type="number"
@@ -104,7 +104,7 @@ export function EditUserForm({ user, disabled, onSaved, onCancel }: Props) {
             value={age}
             onChange={(ev) => setAge(ev.target.value)}
             disabled={disabled || submitting}
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-[#3b82f6] focus:ring-4 focus:ring-[#3b82f6]/15 disabled:opacity-60"
+            className="mt-2 w-full rounded-xl border border-white/[0.08] bg-black/35 px-3 py-2.5 text-zinc-100 outline-none transition focus:border-blue-500/70 focus:ring-4 focus:ring-blue-500/15 disabled:opacity-60"
             required
           />
         </label>
@@ -114,7 +114,7 @@ export function EditUserForm({ user, disabled, onSaved, onCancel }: Props) {
         <button
           type="submit"
           disabled={disabled || submitting}
-          className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[#f59e0b] px-5 py-2.5 text-sm font-semibold text-[#1e3a8a] shadow-sm shadow-amber-600/15 transition hover:bg-[#fbbf24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-900/35 transition hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {submitting ? 'Saving…' : 'Save updates'}
         </button>
