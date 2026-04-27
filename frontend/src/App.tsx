@@ -112,47 +112,91 @@ export default function App() {
         </div>
       </nav>
 
-      <header className="border-b border-white/[0.06] bg-zinc-950">
-        <div className={`${shell} pb-10 pt-10 lg:pb-14 lg:pt-12`}>
-          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
-            <div className="text-left">
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-zinc-500">
-                When the spreadsheet won’t do
-              </p>
-              <h1 className="mt-6 max-w-xl text-pretty text-3xl font-semibold leading-[1.1] tracking-[-0.02em] text-zinc-50 sm:text-4xl lg:text-[2.625rem] lg:leading-[1.08]">
-                Your people,{' '}
-                <span className="bg-gradient-to-r from-blue-400 via-blue-400 to-blue-500 bg-clip-text text-transparent">
-                  organized without the noise.
-                </span>
-              </h1>
-              <p className="mt-5 max-w-lg text-sm leading-relaxed text-zinc-400 lg:text-[0.9375rem]">
-                Keep names, emails, and ages in one calm view. Add someone in a moment, fix a detail when
-                life changes, and always know what’s on file—without digging through tabs or threads.
-              </p>
+      <header className="relative overflow-hidden border-b border-white/[0.06]">
+        {/* Immersive atmosphere */}
+        <div className="pointer-events-none absolute inset-0 bg-zinc-950" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_110%_70%_at_50%_-15%,rgba(59,130,246,0.19),transparent_58%)]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_95%_25%,rgba(37,99,235,0.14),transparent_55%)]"
+          aria-hidden
+        />
+        <div
+          className="hero-orb-drift pointer-events-none absolute left-[6%] top-[18%] h-[min(44vw,380px)] w-[min(44vw,380px)] rounded-full bg-blue-500/14 blur-[100px]"
+          aria-hidden
+        />
+        <div
+          className="hero-orb-drift-delayed pointer-events-none absolute right-[4%] top-[28%] h-[min(40vw,340px)] w-[min(40vw,340px)] rounded-full bg-blue-600/12 blur-[88px]"
+          aria-hidden
+        />
+        <div
+          className="hero-mesh-shift pointer-events-none absolute inset-0 opacity-[0.38] [mask-image:radial-gradient(ellipse_75%_60%_at_50%_38%,black_12%,transparent_68%)]"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.055) 1px, transparent 1px)',
+            backgroundSize: '52px 52px',
+          }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/35 to-transparent"
+          aria-hidden
+        />
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a
-                  href="#workspace"
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06)] shadow-blue-900/40 transition hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
-                >
-                  Start in the workspace
-                  <span aria-hidden="true" className="text-base leading-none">
-                    →
+        <div className={`${shell} relative z-10 pb-12 pt-8 lg:pb-16 lg:pt-10`}>
+          <div className="flex min-h-0 flex-col lg:min-h-[min(88svh,920px)] lg:justify-center">
+            <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14">
+              <div className="text-left lg:col-span-5">
+                <p className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.04] px-3.5 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-zinc-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm">
+                  When the spreadsheet won’t do
+                </p>
+                <h1 className="mt-7 max-w-xl text-pretty text-[2rem] font-semibold leading-[1.06] tracking-[-0.03em] text-zinc-50 sm:text-4xl sm:leading-[1.05] lg:text-[2.75rem] xl:text-[3.15rem] xl:leading-[1.02]">
+                  Your people,{' '}
+                  <span className="bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 bg-clip-text text-transparent">
+                    organized without the noise.
                   </span>
-                </a>
-                <a
-                  href="#why-directory"
-                  className="cursor-pointer rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-zinc-300 transition hover:border-white/15 hover:bg-white/[0.06]"
-                >
-                  What you get
-                </a>
+                </h1>
+                <p className="mt-6 max-w-lg text-[0.9375rem] leading-relaxed text-zinc-400 lg:text-[1.02rem]">
+                  Keep names, emails, and ages in one calm view. Add someone in a moment, fix a detail when
+                  life changes, and always know what’s on file—without digging through tabs or threads.
+                </p>
+
+                <div className="mt-10 flex flex-wrap items-center gap-3">
+                  <a
+                    href="#workspace"
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_22px_56px_-20px_rgba(37,99,235,0.55)] transition hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+                  >
+                    Start in the workspace
+                    <span aria-hidden="true" className="text-base leading-none">
+                      →
+                    </span>
+                  </a>
+                  <a
+                    href="#why-directory"
+                    className="cursor-pointer rounded-full border border-white/[0.12] bg-white/[0.04] px-6 py-3.5 text-sm font-medium text-zinc-200 backdrop-blur-sm transition hover:border-white/20 hover:bg-white/[0.07]"
+                  >
+                    What you get
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative lg:col-span-7">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-blue-500/12 via-transparent to-transparent opacity-70 blur-2xl lg:-inset-8"
+                />
+                <HeroCollage />
               </div>
             </div>
-
-            <HeroCollage />
           </div>
 
-          <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.04] sm:grid-cols-3">
+          <div className="relative mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.06] shadow-[0_32px_64px_-48px_rgba(0,0,0,0.9)] sm:grid-cols-3">
             {[
               {
                 label: 'In your directory',
