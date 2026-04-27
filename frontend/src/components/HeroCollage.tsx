@@ -1,5 +1,5 @@
 /**
- * Decorative hero collage — suggests product depth (no logos, blue-only accents).
+ * Decorative hero collage — product preview (blue accents on zinc).
  */
 export function HeroCollage() {
   return (
@@ -41,7 +41,7 @@ export function HeroCollage() {
         <div className="flex flex-col gap-3">
           <div className="rounded-2xl border border-white/10 bg-zinc-900/95 p-4 shadow-xl backdrop-blur-sm">
             <p className="text-[0.65rem] font-medium uppercase tracking-wider text-zinc-500">
-              Directory health
+              List completeness
             </p>
             <div className="mt-3 flex items-end justify-between gap-2">
               <p className="text-2xl font-semibold tabular-nums text-zinc-100">98%</p>

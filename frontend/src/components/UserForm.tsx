@@ -49,7 +49,7 @@ export function UserForm({ disabled, onCreated }: Props) {
       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-zinc-500">New entry</p>
       <h2 className="mt-2 text-lg font-semibold tracking-tight text-blue-400">Welcome someone new</h2>
       <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-        Each email stays unique—you will be gently nudged if a duplicate slips in.
+        If an email already exists, we’ll let you know before it clutters your list.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
