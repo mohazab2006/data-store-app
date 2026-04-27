@@ -15,6 +15,8 @@ This project focuses on understanding low-level database interactions using JDBC
 
 ## Current implementation
 
+The app is a **monorepo** with a `backend/` (Spring Boot) and `frontend/` (Vite + React + TypeScript) package. The UI calls the REST API with **Axios**.
+
 The backend currently uses **JDBC (Java Database Connectivity)** to interact directly with the database.
 
 This means:
@@ -147,4 +149,37 @@ Phase 3 focuses on direct JDBC data access; service and controller layers come n
   - update user
   - verify deleted user returns `404`
 
-Upcoming work (Phases 6–8 and beyond) is summarized in [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md).
+Remaining work (**Phase 8** and optional Hibernate v2) is summarized in [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md).
+
+---
+
+## Phase 6 (done)
+
+- `frontend/` — Vite + React + TypeScript
+- Styling: **Tailwind CSS** (v4) with the Vite plugin, **Inter** (Google Fonts)
+- **Axios** client: `src/services/apiClient.ts`, `src/services/userService.ts`
+- API base URL: set `VITE_API_BASE_URL` (see `frontend/.env.example`); defaults to `http://localhost:8080`
+- Dev server: `http://localhost:5173` (matches backend CORS)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## Phase 7 (done)
+
+- `src/types/User.ts` — user shape
+- `src/components/UserForm.tsx` — create user
+- `src/components/UserList.tsx` — list, edit, delete
+- `src/components/EditUserForm.tsx` — update selected user
+- `src/App.tsx` — landing hero + layout + status banner for API feedback
+
+Production build:
+
+```bash
+cd frontend
+npm run build
+```
