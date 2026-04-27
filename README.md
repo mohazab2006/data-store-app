@@ -1,112 +1,62 @@
 # Directory
 
-**Your people in one calm view.** Directory is a full-stack contacts workspace: add someone in a moment, skim the list without noise, and edit details only when you mean to—nothing saves until you confirm.
+**Your people in one calm view.**
+
+Directory is a contacts workspace for when a spreadsheet isn’t enough but a giant CRM is overkill—you see everyone on file, add someone fast, and change details only when you choose to. Nothing saves until you confirm.
+
+---
+
+## Why we built it
+
+Spreadsheets scatter context across cells and tabs; threads bury updates in noise. Directory keeps **names, emails, and ages** on a single calm surface so you can **skim**, **capture**, and **correct** without fighting the tool. The UI is deliberate: dark, low-friction, built to stay readable when you’re in a hurry.
 
 ---
 
 ## What you get
 
-- **Single surface** — Names, emails, and ages together so you’re not jumping between spreadsheets and threads.
-- **Quick capture** — One short form to welcome someone new.
-- **Edits with intent** — Open a row, adjust what changed, save—or cancel without touching stored data.
-- **Duplicate awareness** — If an email already exists, you hear about it before it clutters your list.
-- **Polished experience** — Dark, focused UI built for clarity under pressure—not a toy CRUD demo dressed as a product.
+- **One surface** — No jumping between files to answer “who’s on the list?”
+- **Quick capture** — Welcome someone new in one short pass.
+- **Edits with intent** — Open a row, adjust what changed, save—or walk away without touching stored data.
+- **Duplicate awareness** — If an email already exists, you hear about it before it clutters your directory.
+- **Finished feel** — Interaction and feedback tuned for clarity, not a homework CRUD checklist.
 
 ---
 
-## Try it locally
+## Run it locally
 
-You’ll need **Node.js**, a **JDK** compatible with Spring Boot 3.x, and **MySQL**.
+You need **Node.js**, **JDK** (Spring Boot–compatible), and **MySQL**.
 
-### 1. Create the database
+1. Create DB `data_store_db`, then run `backend/src/main/resources/db/schema.sql` (Workbench or `mysql … SOURCE …/schema.sql`).
+2. Copy `backend/application-local.properties.example` → `backend/application-local.properties` and set your DB password *(never commit secrets)*. Or set `SPRING_DATASOURCE_PASSWORD`.
+3. `cd backend` → `.\mvnw.cmd spring-boot:run` (use `./mvnw` on macOS/Linux). Wait for **MySQL connection OK**.
+4. `cd frontend` → `npm install` → `npm run dev` → open **http://localhost:5173**  
+   Optional `.env`: `VITE_API_BASE_URL` if the API isn’t `http://localhost:8080`.
 
-Create a database named `data_store_db`, then apply the schema:
-
-```powershell
-mysql -u root -p data_store_db -e "SOURCE C:/path/to/data-store-app/backend/src/main/resources/db/schema.sql"
-```
-
-(Adjust the path to your clone. In MySQL Workbench, select `data_store_db` and run `schema.sql`.)
-
-Verify with `SHOW TABLES;` — you should see `users`.
-
-### 2. Configure the backend
-
-Never commit database passwords. Pick one approach:
-
-**A — Local file (recommended)**  
-Copy `backend/application-local.properties.example` to `backend/application-local.properties` and set `spring.datasource.password`.
-
-**B — Environment variable**  
-
-```powershell
-$env:SPRING_DATASOURCE_PASSWORD="yourpassword"
-```
-
-Start the API:
-
-```bash
-cd backend
-.\mvnw.cmd spring-boot:run
-```
-
-On macOS/Linux use `./mvnw`. You should see a log line like **MySQL connection OK (database reachable).**
-
-### 3. Run the frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Optional: copy `frontend/.env.example` to `frontend/.env` and set `VITE_API_BASE_URL` if your API isn’t at `http://localhost:8080`.
-
-Open **http://localhost:5173** — the UI talks to the API over HTTP (CORS allows local dev origins).
-
-### Production build (frontend)
-
-```bash
-cd frontend
-npm run build
-```
+Production UI: `cd frontend && npm run build`.
 
 ---
 
-## How it fits together
+<details>
+<summary><strong>Developers</strong> — stack, API, roadmap, tests</summary>
 
-| Layer        | Role |
-| ------------ | ---- |
-| **Experience** | React + TypeScript (Vite), Tailwind, Axios — forms, table, and feedback tuned for scanning and trust. |
-| **Application** | Spring Boot REST API — validation, duplicate handling, predictable responses. |
-| **Data**        | MySQL — accessed with JDBC so the data path stays explicit and easy to reason about. |
+**Shape:** Monorepo — `frontend/` (React, TypeScript, Vite, Tailwind) talks to `backend/` (Spring Boot REST) backed by MySQL via JDBC so the path from UI → API → rows stays explicit.
 
-The repository is a **monorepo**: `backend/` for the API, `frontend/` for the client.
+**Roadmap / learning:** JDBC-first by design; optional Hibernate comparison later — see [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md). Smoke scripts and curl-style notes: `backend/scripts/`, `backend/docs/`.
 
----
-
-## Learning & roadmap
-
-This project is also a deliberate learning path: **JDBC first** (hand-written SQL and clear mapping) so the path from HTTP to rows is visible end to end. A future pass may introduce **Hibernate** for comparison with a higher-level ORM—see [docs/REMAINING-STEPS.md](docs/REMAINING-STEPS.md) for what’s next and optional follow-ups.
-
-API smoke tests and checklists live under `backend/scripts/` and `backend/docs/` if you want automated or manual verification.
-
----
-
-## API (concise)
+**HTTP API**
 
 | Method | Path | Purpose |
 | ------ | ---- | ------- |
-| `POST` | `/api/users` | Create a person |
-| `GET` | `/api/users` | List everyone |
-| `GET` | `/api/users/{id}` | Fetch one |
+| `POST` | `/api/users` | Create |
+| `GET` | `/api/users` | List |
+| `GET` | `/api/users/{id}` | One |
 | `PUT` | `/api/users/{id}` | Update |
 | `DELETE` | `/api/users/{id}` | Remove |
 
-Typical outcomes: success payloads, `400` for bad input, `404` when missing, `409` when email conflicts.
+Common statuses: `400` bad input, `404` missing, `409` duplicate email.
+
+</details>
 
 ---
 
-## License
-
-Use and adapt for learning and portfolio use; add a license file if you ship this beyond personal demos.
+Use freely for learning and portfolio demos; add a proper license if you ship beyond personal use.
